@@ -18,14 +18,18 @@ export default function App() {
 
     income = totalTransaction
       .filter((item: { type: string }) => item.type === "income")
-      .reduce((acc: number, curr: formDataType) => acc + parseFloat(curr.amount), 0);
+      .reduce(
+        (acc: number, curr: formDataType) => acc + parseFloat(curr.amount),
+        0
+      );
     expense = totalTransaction
       .filter((item: { type: string }) => item.type === "expense")
-      .reduce((acc: number, curr: formDataType) => acc + parseFloat(curr.amount), 0);
-    
-    
-    
-    setTotalExpenses({income, expense})
+      .reduce(
+        (acc: number, curr: formDataType) => acc + parseFloat(curr.amount),
+        0
+      );
+
+    setTotalExpenses({ income, expense });
   }, [totalTransaction]);
   return (
     <div className="bg-blue-50 w-full h-screen relative ">
@@ -34,16 +38,22 @@ export default function App() {
       ) : null}
       <Header openModal={setIsOpen} />
       {isClose ? <Modal openModal={setIsOpen} /> : null}
-      {totalExpenses.income || totalExpenses.expense?<><div className="grid grid-cols-2 w-4/5 mx-auto mt-8 gap-5">
-        <Summary income={totalExpenses.income} expense={totalExpenses.expense}/>
+      <div className="grid grid-cols-2 w-4/5 mx-auto mt-8 gap-5">
+        <Summary
+          income={totalExpenses.income}
+          expense={totalExpenses.expense}
+        />
         <div className="bg-white rounded-2xl p-8">
-          <TransactionChartSummary income={totalExpenses.income} expense={totalExpenses.expense}/>
+          <TransactionChartSummary
+            income={totalExpenses.income}
+            expense={totalExpenses.expense}
+          />
         </div>
       </div>
-        <div className="grid grid-cols-2 justify-between gap-5 w-4/5 mx-auto mt-8">
-          <ExpenseList title="income" />
-          <ExpenseList title="expense"/>
-        </div> </>: null}
+      <div className="grid grid-cols-2 justify-between gap-5 w-4/5 mx-auto mt-8">
+        <ExpenseList title="income" />
+        <ExpenseList title="expense" />
+      </div>
     </div>
   );
 }
