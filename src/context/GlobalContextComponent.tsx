@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-type formDataType = {
+export type formDataType = {
   description: string;
   amount: string;
   type: string;
